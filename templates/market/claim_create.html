@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block links %}
+    <script src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>
+{% endblock links %}
+
+
+{% block nav-claim_create %}
+    class="active"
+{% endblock %}
+
+{% block top %}
+
+{% endblock top %}
+
+
+
+{% block content %}
+
+    <script type="text/javascript">
+        $(function () {
+            $(".datePicker").datetimepicker({
+                altFormat: '@',
+                dateFormat: "yy-mm-dd"});
+        });
+    </script>
+
+    <form class="form-horizontal well" action="{% url "claim_create" %}" method="post">
+        <fieldset>
+            <legend>IPO:</legend>
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.media }}
+        </fieldset>
+        <input type="submit" class="btn btn-primary" value="Submit"/>
+    </form>
+{% endblock content %}

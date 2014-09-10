@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block links %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endblock links %}
+
+{% block top %}
+
+{% endblock top %}
+
+{% block content %}
+
+    {% comment %}
+
+        Fonction JavaScript de Google Chart
+        Créé un diagramme de prix
+
+    {% endcomment %}
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+
+                ['Mois', 'Cash'],
+                ['Janvier', 20000],
+                ['Février', 22450],
+                ['Mars', 23780],
+                ['Avril', 25890],
+                ['Mai', 30003],
+                ['Juin', 28989],
+                ['Juillet', 26778],
+                ['Aout', 23434],
+                ['Septembre', 19343],
+                ['Octobre', 23343],
+                ['Novembre', 22322],
+                ['Décembre', 25232],
+                {% for key,value in performance_data %}
+                    ['{{ key }}', {{ value }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Historique de la prédiction'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+
+    {% comment %}
+
+        - Utilisation des layout de Bootstrap pour mettre en forme la page
+        - Affichage des infos d'une prédiction
+        - Bouton pour effectuer un ordres
+    {% endcomment %}
+    <div style="margin-bottom: 100px;" class="span9">
+        <h5>{{ claim.price }}</h5>
+
+        <h2>{{ claim.name }}</h2>
+
+        <div id="chart" style="width: 1024; height: 500px;"></div>
+        <div class="row">
+            <div class="span6">
+                <h4>{% trans "Description" %}</h4>
+                {{ claim.description }}
+            </div>
+            <div class="span3">
+                <h4>{% trans "Condition de succès" %}</h4>
+                {{ claim.success_condition }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="span6">
+                <h4>{% trans "Date de fin" %}</h4>
+                {{ claim.end_date }}
+            </div>
+            <div class="span3">
+                <h4>{% trans "Clauses spéciales" %}</h4>
+                {{ claim.special_condition }}
+                </br>
+                </br>
+                <a class="btn btn-primary" href="{% url "order_create" claim.id %}">{% trans "Effectuer un ordre" %}</a>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+{% endblock content %}

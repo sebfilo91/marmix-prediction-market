@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block links %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endblock links %}
+
+{% load staticfiles %}
+{% load extras %}
+
+{% block top %}
+
+{% endblock top %}
+
+{% block nav-home %}
+    class="active"
+{% endblock %}
+
+{% block content %}
+
+            {% comment %}
+
+                Fonction JavaScript de Google Chart
+                Créé un diagramme de prix
+
+            {% endcomment %}
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+
+                ['Mois', 'Cash'],
+                ['Janvier', 20000],
+                ['Février', 22450],
+                ['Mars', 23780],
+                ['Avril', 25890],
+                ['Mai', 30003],
+                ['Juin', 28989],
+                ['Juillet', 26778],
+                ['Aout', 23434],
+                ['Septembre', 19343],
+                ['Octobre', 23343],
+                ['Novembre', 22322],
+                ['Décembre', 25232],
+                {% for key,value in performance_data %}
+                    ['{{ key }}', {{ value }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: ''
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    {% comment %} <img src="{% static "img/icon_help_black.png" %}" class="help-tooltip" title="{{ help_titles|get_item:'global_help'|upper  }} : {{ help_descriptions|get_item:'global_help' }}"/> {% endcomment %}
+
+    <div class="span12" style="margin-bottom: 100px;">
+
+
+        {% comment %}
+            Partie "lumière sur"
+            Librairies JavaScript : GoogleChart
+
+        {% endcomment %}
+
+        <div class="row">
+            <div class="span6">
+                <h4>{% trans "Lumière sur :" %}<img src="{% static "img/icon_help_black.png" %}" class="help-tooltip"
+                                                    title="{{ help_titles|get_item:'global_help'|upper }} : {{ help_descriptions|get_item:'global_help' }}"/>
+                </h4>
+                <h4>{{ featured_claim.name }}</h4>
+
+                <a class="btn btn-primary"
+                   href="{% url "order_create" featured_claim.id %}">{% trans "Effectuer un ordre" %}</a>
+                <br>
+                <br>
+                <br>
+                {{ featured_claim.price }}
+            </div>
+            <div class="span3">
+                <div id="chart" style="width: 500; height: 400px;"></div>
+            </div>
+        </div>
+
+        {% comment %}
+            Tableau des nouvelles prédictions
+            Style : Bootstrap
+            Thème : Bootswatch :
+
+        {% endcomment %}
+
+        <div class="row">
+            <div class="span6">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>{% trans "Nom" %}</th>
+                        <th>{% trans "Prix" %}</th>
+                        <th>{% trans "Diff (%)" %}</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <h4>{% trans "Nouvelles prédictions" %} :</h4>
+                    {% for claim in new_claims %}
+                        <tr>
+                            <th>{{ claim.name }}</th>
+                            <th>{{ claim.price }}</th>
+                            <th>3.2%</th>
+                            <th><a href='{% url "claim_info" claim.id %}'>{% trans "Voir le détail" %}</a></th>
+                            {% empty %}
+                            {% trans "Aucune prédiction" %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% comment %}
+                Tableau des prédiction à la une
+                Style : Bootstrap
+                Thème : Bootswatch :
+
+            {% endcomment %}
+
+            <div class="span6">
+                <table class="table table-bordered table-striped table-hover">
+                    <h4>{% trans "A la une" %} :</h4>
+                    <thead>
+                    <tr>
+                        <th>{% trans "Nom" %}</th>
+                        <th>{% trans "Prix" %}</th>
+                        <th>{% trans "Diff (%)" %}</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for claim in hot_claims %}
+                        <tr>
+                            <th>{{ claim.name }}</th>
+                            <th>{{ claim.price }}</th>
+                            <th>5.4%</th>
+                            <th><a href='{% url "claim_info" claim.id %}'>{% trans "Voir le détail" %}</a></th>
+                            {% empty %}
+                            {% trans "Aucune prédiction" %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock content %}

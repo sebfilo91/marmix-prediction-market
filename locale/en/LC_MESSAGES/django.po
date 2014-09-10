@@ -1,0 +1,216 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-04 19:37+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\Marmix\settings.py:58
+msgid "Anglais"
+msgstr "English"
+
+#: .\Marmix\settings.py:59
+msgid "Français"
+msgstr "French"
+
+#: .\Marmix\settings.py:60
+msgid "Allemand"
+msgstr "German"
+
+#: .\templates\market\claim_info.html.py:51
+#: .\templates\market\portfolio.html.py:86
+msgid "Description"
+msgstr ""
+
+#: .\templates\market\claim_info.html.py:55
+msgid "Condition de succès"
+msgstr ""
+
+#: .\templates\market\claim_info.html.py:61
+msgid "Date de fin"
+msgstr ""
+
+#: .\templates\market\claim_info.html.py:65
+msgid "Clauses spéciales"
+msgstr ""
+
+#: .\templates\market\claim_info.html.py:69 .\templates\market\home.html.py:67
+msgid "Effectuer un ordre"
+msgstr ""
+
+#: .\templates\market\claims.html.py:14 .\templates\market\home.html.py:80
+#: .\templates\market\home.html.py:107
+msgid "Prédictions"
+msgstr ""
+
+#: .\templates\market\claims.html.py:17 .\templates\market\historic.html.py:17
+#: .\templates\market\home.html.py:83 .\templates\market\home.html.py:110
+#: .\templates\market\portfolio.html.py:28
+#: .\templates\market\portfolio.html.py:57
+#: .\templates\market\portfolio.html.py:85
+msgid "Nom"
+msgstr ""
+
+#: .\templates\market\claims.html.py:18 .\templates\market\home.html.py:84
+#: .\templates\market\home.html.py:111 .\templates\market\portfolio.html.py:87
+msgid "Prix"
+msgstr ""
+
+#: .\templates\market\claims.html.py:27 .\templates\market\home.html.py:96
+#: .\templates\market\home.html.py:122
+msgid "Voir le détail"
+msgstr ""
+
+#: .\templates\market\claims.html.py:30
+msgid "Aucunes prédiction"
+msgstr ""
+
+#: .\templates\market\historic.html.py:13
+msgid "Historiques"
+msgstr ""
+
+#: .\templates\market\historic.html.py:16
+msgid "Date"
+msgstr ""
+
+#: .\templates\market\historic.html.py:18
+#: .\templates\market\portfolio.html.py:29
+#: .\templates\market\portfolio.html.py:58
+msgid "Qté"
+msgstr ""
+
+#: .\templates\market\historic.html.py:19
+#: .\templates\market\portfolio.html.py:59
+msgid "Type"
+msgstr ""
+
+#: .\templates\market\historic.html.py:20
+#: .\templates\market\portfolio.html.py:60
+msgid "Prix min"
+msgstr ""
+
+#: .\templates\market\historic.html.py:21
+#: .\templates\market\portfolio.html.py:61
+msgid "Prix max"
+msgstr ""
+
+#: .\templates\market\historic.html.py:22
+#: .\templates\market\portfolio.html.py:62
+msgid "Expire le"
+msgstr ""
+
+#: .\templates\market\historic.html.py:23
+#: .\templates\market\portfolio.html.py:63
+msgid "Cours actuel"
+msgstr ""
+
+#: .\templates\market\historic.html.py:32
+#: .\templates\market\portfolio.html.py:44
+msgid "Votre portefeuille est vide"
+msgstr ""
+
+#: .\templates\market\home.html.py:61
+msgid "Lumière sur"
+msgstr ""
+
+#: .\templates\market\home.html.py:85 .\templates\market\home.html.py:112
+#, python-format
+msgid "Diff (%%)"
+msgstr ""
+
+#: .\templates\market\home.html.py:90
+msgid "Nouvelles prédictions"
+msgstr ""
+
+#: .\templates\market\home.html.py:98 .\templates\market\home.html.py:124
+msgid "Aucune prédiction"
+msgstr ""
+
+#: .\templates\market\home.html.py:105
+msgid "A la une"
+msgstr ""
+
+#: .\templates\market\leaderboard.html.py:17
+msgid "Top 10 des joueurs"
+msgstr ""
+
+#: .\templates\market\leaderboard.html.py:20
+msgid "Nom d'utilisateur"
+msgstr ""
+
+#: .\templates\market\leaderboard.html.py:21
+msgid "Cash"
+msgstr ""
+
+#: .\templates\market\leaderboard.html.py:31
+msgid "Aucun trader"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:25
+msgid "Portefeuille"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:30
+#: .\templates\market\portfolio.html.py:88
+msgid "Cours"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:31
+msgid "Total"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:32
+msgid "Valeur"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:49
+msgid "Total portefeuille"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:50
+msgid "Total cash:"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:54
+#: .\templates\market\portfolio.html.py:82
+msgid "Ordres en attente"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:73
+msgid "Aucun ordre"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:89
+msgid "Différence"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:90
+#, python-format
+msgid "Diff %%"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:95
+msgid "Vos alertes"
+msgstr ""
+
+#: .\templates\market\portfolio.html.py:101
+msgid "Aucune alerte"
+msgstr ""
+
+#~ msgid "Je trouve que I18N c'est la base !"
+#~ msgstr "I think I18N is awesome"
+
+#~ msgid "J'utilise I18N mais avec le mot clé 'trans\\'"
+#~ msgstr "I Use I18N and it's awesome !"
+
+#~ msgid "tortue"
+#~ msgstr "turtle"

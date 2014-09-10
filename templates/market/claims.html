@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block top %}
+
+{% endblock top %}
+
+{% block nav-list_claim %}
+    class="active"
+{% endblock %}
+
+
+{% block content %}
+    {% comment %}
+        Tableau des prédictions :
+        Style : Bootstrap
+        Thème : Bootswatch :
+
+    {% endcomment %}
+    <table class="table table-bordered table-striped table-hover">
+        <h4>{% trans "Prédictions" %}:</h4>
+        <thead>
+        <tr>
+            <th>{% trans "Nom" %}</th>
+            <th>{% trans "Prix" %}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for claim in claims %}
+            <tr>
+                <th>{{ claim.name }}</th>
+                <th>{{ claim.price }}</th>
+                <th><a href='{% url "claim_info" claim.id %}'>{% trans "Voir le détail" %}</a></th>
+                <br>
+                {% empty %}
+                <th>{% trans "Aucunes prédiction" %}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

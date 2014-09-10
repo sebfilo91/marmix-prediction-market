@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load extras %}
+
+{% block links %}
+
+
+{% endblock links %}
+
+
+{% block nav-portfolio %}
+    class="active"
+{% endblock %}
+
+
+{% block top %}
+
+{% endblock top %}
+
+
+{% block content %}
+    {% comment %}
+        Tableau du portefeuille (holding) :
+        Style : Bootstrap
+        Thème : Bootswatch :
+
+    {% endcomment %}
+
+    <table class="table table-bordered table-striped table-hover">
+        <h4><img src="{% static "img/icon_help_black.png" %}" class="help-tooltip"
+                 title="{{ help_titles|get_item:'global_help'|upper }} : {{ help_descriptions|get_item:'global_help' }}"/> {% trans "Portefeuille" %}
+            :</h4>
+        <thead>
+        <tr>
+            <th>{% trans "Nom" %}</th>
+            <th>{% trans "Qté" %}</th>
+            <th>{% trans "Prix init" %}</th>
+            <th>{% trans "Cours" %}</th>
+            <th>{% trans "Total" %}</th>
+            <th>{% trans "Valeur" %}</th>
+            <th>(%)</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for holding in holdings %}
+            <tr>
+                <th>{{ holding.claim.name }}</th>
+                <th>{{ holding.quantity }}</th>
+                <th>{{ holding.price }}</th>
+                <th>{{ holding.claim.price }}</th>
+                <th>788.9</th>
+                <th>-673.9</th>
+                <th>-85.42%</th>
+                <th><a class="btn btn-primary"
+                       href="{% url "order_create" holding.claim.id %}">{% trans "Effectuer un ordre" %}</a></th>
+                {% empty %}
+                <th>{% trans "Votre portefeuille est vide" %}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% trans "Total portefeuille" %} :
+    {% trans "Total cash:" %}
+    </br>
+
+    {% comment %}
+        Tableau des ordres en attentes :
+        Style : Bootstrap
+        Thème : Bootswatch :
+
+    {% endcomment %}
+
+    <table class="table table-bordered table-striped table-hover">
+        <h4><img src="{% static "img/icon_help_black.png" %}" class="help-tooltip"
+                 title="{{ help_titles|get_item:'global_help'|upper }} : {{ help_descriptions|get_item:'global_help' }}"/> {% trans "Ordres en attente" %}
+            :</h4>
+        <thead>
+        <tr>
+            <th>{% trans "Nom" %}</th>
+            <th>{% trans "Qté" %}</th>
+            <th>{% trans "Type" %}</th>
+            <th>{% trans "Prix min" %}</th>
+            <th>{% trans "Prix max" %}</th>
+            <th>{% trans "Expire le" %}</th>
+            <th>{% trans "Cours actuel" %}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in waiting_orders %}
+            <tr>
+                <th>{{ order.claim.name }}</th>
+                <th>{{ order.quantity }}</th>
+                <th>{{ order.type }}</th>
+                <th>{{ order.min_price }}</th>
+                <th>{{ order.max_price }}</th>
+                <th>{{ order.date_expire }}</th>
+                <th>{{ order.claim.price }}</th>
+                {% empty %}
+                <th>{% trans "Aucun ordre" %}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </br>
+
+    {% comment %}
+        Tableau des alertes :
+        Style : Bootstrap
+        Thème : Bootswatch :
+
+    {% endcomment %}
+
+    <table class="table table-bordered table-striped table-hover">
+        <h4>{% trans "Alertes" %} :</h4>
+        <thead>
+        <tr>
+            <th>{% trans "Nom" %}</th>
+            <th>{% trans "Description" %}</th>
+            <th>{% trans "Prix" %}</th>
+            <th>{% trans "Cours" %}</th>
+            <th>{% trans "Différence" %}</th>
+            <th>{% trans "Diff %" %}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <b><img src="{% static "img/icon_help_black.png" %}" class="help-tooltip"
+                title="{{ help_titles|get_item:'global_help'|upper }} : {{ help_descriptions|get_item:'global_help' }}"/> {% trans "Vos alertes" %}
+            :</b>
+        {% for alert in alerts %}
+            <tr>
+                <th>{{ alert.claim.name }}</th>
+                <th>{{ alert.description }}</th>
+                <th>{{ alert.price }}</th>
+                <th>{{ alert.claim.price }}</th>
+                {% empty %}
+                <th>{% trans "Aucune alerte" %}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+
+{% endblock content %}
+

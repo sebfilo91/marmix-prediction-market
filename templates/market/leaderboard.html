@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block top %}
+
+{% endblock top %}
+
+
+{% block nav-leaderboard %}
+    class="active"
+{% endblock %}
+
+
+{% block content %}
+
+
+    <table class="table table-bordered table-striped table-hover">
+        <h2>{% trans "Top 10 des joueurs" %} :</h2>
+        <thead>
+        <tr>
+            <th>{% trans "Nom d'utilisateur" %}</th>
+            <th>{% trans "Cash" %}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for trader in trader_leaderboard %}
+            <tr>
+                <th>{{ trader.user.username }}</th>
+                <th>{{ trader.cash }}</th>
+                {% empty %}
+                <th>{% trans "Aucun trader" %}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}

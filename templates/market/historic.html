@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block top %}
+
+{% endblock top %}
+
+{% block nav-historic %}
+    class="active"
+{% endblock %}
+
+{% block content %}
+
+    {% comment %}
+        Tableau des transactions d'un trader :
+        Style : Bootstrap
+        Thème : Bootswatch :
+
+    {% endcomment %}
+    <table class="table table-bordered table-striped table-hover">
+        <h2>{% trans "Historiques" %} :</h2>
+        <thead>
+        <tr>
+            <th>{% trans "Date" %}</th>
+            <th>{% trans "Nom" %}</th>
+            <th>{% trans "Qté" %}</th>
+            <th>{% trans "Type" %}</th>
+            <th>{% trans "Prix min" %}</th>
+            <th>{% trans "Prix max" %}</th>
+            <th>{% trans "Expire le" %}</th>
+            <th>{% trans "Cours actuel" %}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in filled_orders %}
+            <tr>
+                <th>{{ order.claim.name }}</th>
+                {% empty %}
+                <th>{% trans "Votre portefeuille est vide" %}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+{% endblock content %}

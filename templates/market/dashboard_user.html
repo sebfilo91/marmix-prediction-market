@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block links %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endblock links %}
+
+{% block nav-dashboard_user %}
+    class="active"
+{% endblock %}
+
+
+{% block top %}
+
+{% endblock top %}
+
+{% block content %}
+    <!--## Javascript du graphique en ligne
+    ##
+    ##-------------------------------->
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+
+                ['Mois', 'Cash'],
+                ['Janvier', 20000],
+                ['Février', 22450],
+                ['Mars', 23780],
+                ['Avril', 25890],
+                ['Mai', 30003],
+                ['Juin', 28989],
+                ['Juillet', 26778],
+                ['Aout', 23434],
+                ['Septembre', 19343],
+                ['Octobre', 23343],
+                ['Novembre', 22322],
+                ['Décembre', 25232],
+                {% for key,value in performance_data %}
+                    ['{{ key }}', {{ value }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Performances'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('line_div'));
+            chart.draw(data, options);
+        }
+    </script>
+    <!--
+    ## Javascript du graphique en gâteau
+    ##
+    ##-------------------------------->
+    <script type="text/javascript">
+        var data;
+        var chart;
+
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1', {'packages': ['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create our data table.
+            data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['En jeu', 3],
+                ['Disponible', 1],
+            ]);
+
+            // Set chart options
+            var options = {'title': 'Cash actuellement mis en jeu',
+                'width': 400,
+                'height': 300};
+
+            // Instantiate and draw our chart, passing in some options.
+            chart = new google.visualization.PieChart(document.getElementById('pie_div'));
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+            chart.draw(data, options);
+        }
+
+        function selectHandler() {
+            var selectedItem = chart.getSelection()[0];
+            var value = data.getValue(selectedItem.row, 0);
+            alert('The user selected ' + value);
+        }
+
+    </script>
+
+    <!--
+    ## Javascript du graphique en barre
+    ##
+    ##-------------------------------->
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Prédiction', 'Prix achat', 'Valeur'],
+                ['Google deviendra-t-il..', 1000, 400],
+                ['Blackberry supassera-t-il..', 1170, 460],
+                ['Les démocrates seront-t-il..', 660, 1120],
+            ]);
+
+            var options = {
+                title: 'Gains et pertes par action',
+                hAxis: {title: 'Prédiction', titleTextStyle: {color: 'red'}}
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('bar_div'));
+            chart.draw(data, options);
+        }
+    </script>
+
+
+
+    <div class="span9">
+        <div id="line_div" style="width: 1024; height: 500px;"></div>
+        <div class="row">
+            <div class="span6">
+                <div id="bar_div" style="width: 500px; height: 500px;"></div>
+            </div>
+            <div class="span3">
+                <div id="pie_div" style="width: 500px; height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock content %}

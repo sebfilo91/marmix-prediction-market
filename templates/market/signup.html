@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block top %}
+
+{% endblock top %}
+
+{% block content %}
+    <script>
+        $(function () {
+            $(".datePicker").datepicker({dateFormat: 'yy-mm-dd 00:00:00', altFormat: 'yy-mm-dd 00:00:00'});
+        });
+    </script>
+
+    <form action="{% url "signup" %}" method="post">
+        {% csrf_token %}
+        {{ userform.as_p }}
+        {{ userform.media }}
+        {{ traderform.as_p }}
+        {{ traderform.media }}
+        <input type="submit" value="Submit"/>
+    </form>
+
+{% endblock content %}

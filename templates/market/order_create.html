@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{%  block links %}
+    <script src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>
+{% endblock links %}
+{%  block top %}
+
+{% endblock top %}
+
+{%  block content %}
+    {% comment %}
+        Selectionneur de date :
+        Librairies JS : jquery, jquery-ui, jquery-ui-timepicker-addon
+
+    {% endcomment %}
+<script type="text/javascript">
+    $(function() {
+    $( ".datePicker" ).datetimepicker({
+            altFormat: '@',
+            dateFormat: "yy-mm-dd"});
+    });
+</script>
+
+
+    {% comment %}
+        Formulaire de création de prédiction
+        Classe de formulaire : ClaimForm
+
+    {% endcomment %}
+<h1>{{ claim.name }}</h1>
+<form  class="form-horizontal well" action="{% url "order_create" claim.id %}" method="post">
+    {% csrf_token %}
+    {{  form.as_p }}
+    {{  form.media }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock content %}
